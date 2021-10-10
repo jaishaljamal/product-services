@@ -6,17 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
     @Autowired
     private ProductService service;
 
-    @RequestMapping(value="/api/v1/products", method = RequestMethod.POST)
-    public Product addProduct(@RequestBody Product product) {
+    @PostMapping
+    public Product addProduct(@Valid @RequestBody Product product) {
         return service.saveProduct(product);
     }
 
@@ -25,27 +26,28 @@ public class ProductController {
         return service.saveProducts(products);
     }*/
 
-    @RequestMapping(value="/api/v1/products", method = RequestMethod.GET)
+    //@RequestMapping(value="/api/v1/products", method = RequestMethod.GET)
+    @GetMapping
     public List<Product> findAllProducts() {
         return service.getProducts();
     }
 
-    @RequestMapping(value="/api/v1/products/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public Product findProductById(@PathVariable int id) {
         return service.getProductById(id);
     }
 
-    @RequestMapping(value="/api/v1/products/{name}", method = RequestMethod.GET)
+    /*@GetMapping("/{name}")
     public Product findProductByName(@PathVariable String name) {
         return service.getProductByName(name);
-    }
+    }*/
 
-    @RequestMapping(value="/api/v1/products",method = RequestMethod.PUT)
+    @PutMapping
     public Product updateProduct(@RequestBody Product product) {
         return service.updateProduct(product);
     }
 
-    @RequestMapping(value="/api/v1/products/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable int id) {
         return service.deleteProduct(id);
     }
