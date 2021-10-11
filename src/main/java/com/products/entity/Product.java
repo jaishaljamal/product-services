@@ -22,10 +22,10 @@ public class Product {
     @Id
     @GeneratedValue
     private int id;
-    @NotBlank(message="please enter quantity  of product");
+    @NotBlank(message = "Please enter the name of the product")
     private String name;
-    @NotBlank(message="please enter quantity  of product");
+    @NotBlank(message = "Please enter the quantity")
     private String quantity;
-     @NotBlank(message="please enter price of product");
+    @NotBlank(message = "Please enter the price")
     private String price;
 }
