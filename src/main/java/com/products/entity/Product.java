@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+
 
 @Data
 @AllArgsConstructor
@@ -19,7 +22,10 @@ public class Product {
     @Id
     @GeneratedValue
     private int id;
+    @NotBlank(message="please enter quantity  of product");
     private String name;
-    private int quantity;
-    private double price;
+    @NotBlank(message="please enter quantity  of product");
+    private String quantity;
+     @NotBlank(message="please enter price of product");
+    private String price;
 }
