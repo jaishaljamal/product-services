@@ -12,17 +12,16 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
+
 public class Product {
 
     @Id
-    @GeneratedValue
-    private int id;
-    //@Column(name = "name", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int product_id;
     @NotBlank(message = "Please enter the name of the product")
-    private String name;
-    @NotBlank(message = "Please enter the quantity")
-    private String quantity;
+    private String product_name;
     @NotBlank(message = "Please enter the price")
-    private String price;
+    private String product_price;
+    @NotBlank(message = "Please enter the rating")
+    private String product_rating;
 }

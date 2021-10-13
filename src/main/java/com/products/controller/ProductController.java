@@ -4,7 +4,6 @@ import com.products.entity.Product;
 import com.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -14,32 +13,28 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService service;
+    ProductService service;
 
     @PostMapping
     public Product addProduct(@Valid @RequestBody Product product) {
+
         return service.saveProduct(product);
     }
 
-    /*@RequestMapping(value="/api/v1/products", method = RequestMethod.POST)
-    public List<Product> addProducts(@RequestBody List<Product> products) {
-        return service.saveProducts(products);
-    }*/
 
-    //@RequestMapping(value="/api/v1/products", method = RequestMethod.GET)
     @GetMapping
     public List<Product> findAllProducts() {
         return service.getProducts();
     }
 
-    @GetMapping("/{id}")
-    public Product findProductById(@PathVariable int id) {
-        return service.getProductById(id);
+    @GetMapping("/{product_id}")
+    public Product findProductById(@PathVariable int product_id) {
+        return service.getProductById(product_id);
     }
 
-    /*@GetMapping("/{name}")
-    public Product findProductByName(@PathVariable String name) {
-        return service.getProductByName(name);
+    /*@GetMapping("/{product_name}")
+    public List<Product> findProductByName(@PathVariable String product_name) {
+        return service.getProductByName(product_name);
     }*/
 
     @PutMapping
@@ -47,8 +42,8 @@ public class ProductController {
         return service.updateProduct(product);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable int id) {
-        return service.deleteProduct(id);
+    @DeleteMapping("/{product_id}")
+    public String deleteProduct(@PathVariable int product_id) {
+        return service.deleteProduct(product_id);
     }
 }
