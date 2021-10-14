@@ -17,11 +17,11 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_id;
+    private int id;
     @NotBlank(message = "Please enter the name of the product")
-    private String product_name;
+    private String name;
     @NotBlank(message = "Please enter the price")
-    private String product_price;
+    private String price;
     @NotBlank(message = "Please enter the rating")
-    private String product_rating;
+    private String rating;
 }

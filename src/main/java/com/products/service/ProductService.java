@@ -3,15 +3,14 @@ package com.products.service;
 import com.products.entity.Product;
 import com.products.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.List;
 
 @Service
-@Component
+
 public class ProductService {
     @Autowired
     ProductRepository repository;
@@ -28,24 +27,24 @@ public class ProductService {
         return repository.findAll();
     }
 
-    public Product getProductById(int product_id) {
-        return repository.findById(product_id).orElse(null);
+    public Product getProductById(int id) {
+        return repository.findById(id).orElse(null);
     }
 
-    /*public List<Product> getProductByName(String product_name) {
-        return repository.findByName(product_name);
-    }*/
+    public List<Product> getProductByName(String name) {
+        return repository.findByName(name);
+    }
 
-    public String deleteProduct(int product_id) {
-        repository.deleteById(product_id);
-        return "product removed !! " + product_id;
+    public String deleteProduct(int id) {
+        repository.deleteById(id);
+        return "product removed !! " + id;
     }
 
     public Product updateProduct(Product product) {
-        Product existingProduct = repository.findById(product.getProduct_id()).orElse(null);
-        existingProduct.setProduct_name(product.getProduct_name());
-        existingProduct.setProduct_price(product.getProduct_price());
-        existingProduct.setProduct_rating(product.getProduct_rating());
+        Product existingProduct = repository.findById(product.getId()).orElse(null);
+        existingProduct.setName(product.getName());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setRating(product.getRating());
         return repository.save(existingProduct);
     }
 
