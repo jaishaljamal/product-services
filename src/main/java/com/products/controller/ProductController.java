@@ -5,45 +5,45 @@ import com.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
     @Autowired
-    private ProductService service;
+    ProductService service;
 
-    @PostMapping("/addProduct")
-    public Product addProduct(@RequestBody Product product) {
+    @PostMapping
+    public Product addProduct(@Valid @RequestBody Product product) {
+
         return service.saveProduct(product);
     }
 
-    @PostMapping("/addProducts")
-    public List<Product> addProducts(@RequestBody List<Product> products) {
-        return service.saveProducts(products);
-    }
 
-    @GetMapping("/products")
+    @GetMapping
     public List<Product> findAllProducts() {
         return service.getProducts();
     }
 
-    @GetMapping("/productById/{id}")
+    @GetMapping("/{id}")
     public Product findProductById(@PathVariable int id) {
         return service.getProductById(id);
     }
 
-    @GetMapping("/product/{name}")
-    public Product findProductByName(@PathVariable String name) {
+    @GetMapping("/name/{name}")
+    public List<Product> findProductByName(@PathVariable String name) {
         return service.getProductByName(name);
     }
 
-    @PutMapping("/update")
+
+    @PutMapping
     public Product updateProduct(@RequestBody Product product) {
         return service.updateProduct(product);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable int id) {
         return service.deleteProduct(id);
     }
